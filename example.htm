@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>jQuery Dice Example</title>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+  <script type="text/javascript" src="jquery.dice.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function()
+    {
+      $('#dice').dice({'callback': callback});
+    });
+
+    function callback(num)
+    {
+      $('#current_number').html('Current number: '+num);
+    }
+  </script>
+  <style type="text/css">
+   h1 {
+     text-align: center;
+   }
+
+   body > div {
+     width: 340px;
+     margin-left: auto;
+     margin-right: auto;
+     padding: 20px;
+   }
+
+   div#dice {
+     float: left;
+     width: 50px;
+   }
+
+   div.l {
+     float: right;
+     width: 250px;
+   }
+
+   div.l:after {
+     clear: both;
+   }
+
+   div#current_number {
+     margin-top: 15px;
+     font-weight: bold;
+   }
+  </style>
+ </head>
+ <body>
+  <h1>jQuery Dice Example</h1>
+  <div>
+   <div id="dice"></div>
+   <div class="l">
+    <div>
+     Really simple demo of a really simple jQuery plugin.
+     (I think it needn't even to be explained that you
+     have to click on the dice to dice.)
+    </div>
+    <div id="current_number">Current number: none</div>
+   </div>
+  </div>
+ </body>
+</html>
