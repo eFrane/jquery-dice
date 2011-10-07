@@ -28,6 +28,20 @@
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
     .footer { text-align:center; padding-top:30px; font-style: italic; }
   </style>
+
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+  <script type="text/javascript" src="https://raw.github.com/eFrane/jquery-dice/master/jquery.dice.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function()
+    {
+      $('#dice').dice({'callback': callback});
+    });
+
+    function callback(num)
+    {
+      $('#current_number').html('Current number: '+num);
+    }
+  </script>
 </head>
 
 <body>
@@ -50,18 +64,37 @@
     </div>
 
     <p>jQuery dice plugin
-==================
+
+
 
 Very simple plugin which allows to display a dice, click on it and retrieve
+
 a random number (between 1 and 6, of course.)
 
+
+
 The dice glyphs can be replaced.
-</p><h2>Dependencies</h2>
+
+</p>
+<h2>Example</h2>
+<div class="example">
+   <div id="dice"></div><br /><div id="current_number">Current number: none</div>
+   <br />
+   <div class="l">
+    <div>
+     Really simple demo of a really simple jQuery plugin.
+     (I think it needn't even to be explained that you
+     have to click on the dice to dice.)
+    </div>
+
+   </div>
+  </div>
+<h2>Dependencies</h2>
 <p>jQuery Javascript Library</p>
 <h2>Authors</h2>
-<p>Stefan Graupner (stefan.graupner@gmail.com)<br/><br/>      </p>
-<h2>Contact</h2>
-<p>Stefan Graupner (stefan.graupner@gmail.com)<br/>      </p>
+<p>Stefan Graupner (stefan.graupner@gmail.com)
+<br/>
+<br/>      </p>
 
 
     <h2>Download</h2>
@@ -81,6 +114,6 @@ The dice glyphs can be replaced.
 
   </div>
 
-  
+
 </body>
 </html>
