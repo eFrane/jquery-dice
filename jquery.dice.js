@@ -20,12 +20,12 @@
         switch (number)
         {
           default:
-          case 1: x =  0; y =  0; break;
-          case 2: x = 80; y =  0; break;
-          case 3: x = 40; y =  0; break;
-          case 4: x = 40; y = 40; break;
-          case 5: x = 80; y = 40; break;
-          case 6: x =  0; y = 40; break;
+          case 1: x =                   0; y =  0;                break;
+          case 2: x = 2*options.glyphSize; y =  0;                break;
+          case 3: x =   options.glyphSize; y =  0;                break;
+          case 4: x =   options.glyphSize; y = options.glyphSize; break;
+          case 5: x = 2*options.glyphSize; y = options.glyphSize; break;
+          case 6: x =                   0; y = options.glyphSize; break;
         }
         $(m_this).css('backgroundPosition', x+'px '+y+'px');
       }
