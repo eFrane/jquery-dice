@@ -13,11 +13,8 @@
       'glyphSize': 40,
       'glyphSrc': 'dice.gif',
       'juggleTimeout': 300,
-      'number': 1
-    };
-
-    var functions = {
-      'setTo': function (number)
+      'number': 1,
+      'selectGlyph': function (number)
       {
         var x, y;
         switch (number)
@@ -31,24 +28,8 @@
           case 6: x =  0; y = 40; break;
         }
         $(m_this).css('backgroundPosition', x+'px '+y+'px');
-      },
-
-      'juggle' : function()
-      {
-        var z = $(m_this).css('z-index');
-        $(m_this).css('z-index', 1).animate(
-        {
-          'z-index':options.juggleTimeout
-        },{
-          duration: options.juggleTimeout,
-          step: function(now, fx) {
-            functions.setTo((parseInt(now) % 6 || Math.random() * 6) + 1);
-          }
-        });
-        $(m_this).css('z-index', z);
-        window.setTimeout($.noop, options.juggleTimeout);
       }
-    }
+    };
 
     options = $.extend(defaults, options);
 
@@ -60,15 +41,32 @@
 
     $(this).click(function()
     {
-      functions.juggle();
+      $.when($.Deferred(function(dfd)
+      {
+        var z = $(m_this).css('z-index');
 
-      options.number = (Math.floor(Math.random() * 2011) % 6) + 1;
-      $(this).stop();
-      functions.setTo(options.number);
+        $(m_this).css('z-index', 1).animate(
+        {
+          'z-index': options.juggleTimeout
+        }, {
+          'step': function(now, fx)
+          {
+            options.selectGlyph((Math.floor(Math.random() * 2011) % 6) + 1);
+          },
+          'duration': options.juggleTimeout,
+          'complete': dfd.resolve
+        }).css('z-index', z);
 
-      if (options.callback
-          && typeof(options.callback) === "function")
-        options.callback(options.number);
+        return dfd.promise();
+      })).done(function() {
+        options.number = (Math.floor(Math.random() * 2011) % 6) + 1;
+        $(this).stop();
+        options.selectGlyph(options.number);
+
+        if (options.callback
+            && typeof(options.callback) === "function")
+          options.callback(options.number);
+      });
     });
 
     $(this).click();
