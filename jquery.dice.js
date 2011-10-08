@@ -49,17 +49,17 @@
         {
           'z-index': options.juggleTimeout
         }, {
-          'step': function(now, fx)
+          step: function(now, fx)
           {
-            options.selectGlyph((Math.floor(Math.random() * 2011) % 6) + 1);
+            options.selectGlyph(Math.floor(Math.random() * 6) + 1);
           },
-          'duration': options.juggleTimeout,
-          'complete': dfd.resolve
+          duration: options.juggleTimeout,
+          complete: dfd.resolve
         }).css('z-index', z);
 
         return dfd.promise();
       })).done(function() {
-        options.number = (Math.floor(Math.random() * 2011) % 6) + 1;
+        options.number = (Math.floor(Math.random() * 6) + 1);
         $(this).stop();
         options.selectGlyph(options.number);
 
