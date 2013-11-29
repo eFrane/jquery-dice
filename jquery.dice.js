@@ -68,7 +68,7 @@
       {
         var z = $(m_this).css('z-index');
 
-        $(m_this).css('z-index', 1).animate(
+        $(m_this).css('z-index', 1).stop().animate(
         {
           'z-index': options.juggleTimeout
         }, {
